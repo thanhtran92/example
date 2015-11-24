@@ -9,6 +9,6 @@ create table products (
     category varchar(64),
     image_path varchar(1024),
     price varchar(64),
-    amount tinyint(16),
+    quantity tinyint(16),
     info text
 );
