@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="container">
-    <div th:if="${unless #lists.isEmpty(products)}">
+    <div th:unless="${#lists.isEmpty(products)}">
         <h2>Product List</h2>
         <table class="table table-striped">
             <tr>
