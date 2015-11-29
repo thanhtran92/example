@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Hello world!
  *
  */
-@Controller
+//@Controller
 @EnableAutoConfiguration
 public class App {
     /**
@@ -24,10 +24,10 @@ public class App {
     /**
      * @return index.html page
      */
-    @RequestMapping("/")
-    String home() {
-        return "index.html";
-    }
+//    @RequestMapping("/")
+//    String home() {
+//        return "index";
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
