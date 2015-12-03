@@ -4,23 +4,25 @@
     <title>ONLINE STORE</title>
   </head>
   <body>
-    <div class="container">
-      <div th:unless="${#lists.isEmpty(products)}">
-        <h2>Product List</h2>
-        <table class="table table-striped">
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-          <tr th:each="product : ${products}">
-            <td th:text="${product.id}">Id</td>
-            <td th:text="${product.name}">Name</td>
-            <td th:text="${product.price}">Price</td>
-            <td><a th:href="${'/product/' + product.id}">View</a></td>
-          </tr>
-        </table>
-      </div>
+    <p><a href="#" th:href="@{/}">Home</a></p>
+    <p><a href="#" th:href="@{/products}">Products</a></p>
+    <p><a href="#" th:href="@{product/new}">Create Product</a></p>
+    <div th:unless="${#lists.isEmpty(products)}">
+      <h3>Product List</h3>
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+        <tr th:each="product : ${products}">
+          <td th:text="${product.id}">Id</td>
+          <td th:text="${product.name}">Name</td>
+          <td th:text="${product.price}">Price</td>
+          <td><a th:href="${'/product/' + product.id}">View</a></td>
+          <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
+        </tr>
+      </table>
     </div>
   </body>
 </html>

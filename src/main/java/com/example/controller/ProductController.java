@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.domain.Product;
 import com.example.service.ProductService;
 
 @Controller
@@ -18,7 +19,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @RequestMapping("/products")
     public String list(Model model){
         model.addAttribute("products", productService.listAllProducts());
         return "products";
@@ -28,5 +29,23 @@ public class ProductController {
     public String showProduct(@PathVariable Long id, Model model){
         model.addAttribute("product", productService.getProductById(id));
         return "productdetails";
+    }
+
+    @RequestMapping("product/delete/{id}")
+    public String deleteProdut(@PathVariable Long id) {
+        productService.deleteProductById(id);
+        return "redirect:/products";
+    }
+
+    @RequestMapping("product/new")
+    public String newProduct(Model model){
+        model.addAttribute("product", new Product());
+        return "productform";
+    }
+
+    @RequestMapping(value = "product", method = RequestMethod.POST)
+    public String saveProduct(Product product) {
+        productService.saveProduct(product);
+        return "redirect:/product/" + product.getId();
     }
 }
