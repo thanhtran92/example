@@ -5,8 +5,7 @@
   </head>
   <body>
     <p><a href="#" th:href="@{/}">Home</a></p>
-    <p><a href="#" th:href="@{/products}">Products</a></p>
-    <p><a href="#" th:href="@{product/new}">Create Product</a></p>
+    <p><a href="#" th:href="@{'product/new'}">Create Product</a></p>
     <div th:unless="${#lists.isEmpty(products)}">
       <h3>Product List</h3>
       <table>
@@ -19,7 +18,8 @@
           <td th:text="${product.id}">Id</td>
           <td th:text="${product.name}">Name</td>
           <td th:text="${product.price}">Price</td>
-          <td><a th:href="${'/product/' + product.id}">View</a></td>
+          <td><a th:href="@{'/product/' + ${product.id}}">View</a></td>
+          <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
           <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
         </tr>
       </table>

@@ -8,11 +8,12 @@
     <p><a href="#" th:href="@{/products}">Products</a></p>
     <h3>Product Form</h3>
     <form th:object="${product}" th:action="@{/product}" method="post">
+      <input type="hidden" th:field="*{id}"/>
       Name:<br></br>
-      <input type="text" name="name"/>
+      <input type="text" th:field="*{name}"/>
       <br></br>
       Category:<br></br>
-      <input type="text" name="category"/>
+      <input type="text" th:field="*{category}"/>
       <br></br>
       Image Path:<br></br>
       <input type="text" th:field="*{imagePath}"/>
@@ -26,7 +27,7 @@
       Info:<br></br>
       <input type="text" th:field="*{info}"/>
       <br></br><br></br>
-      <input type="submit" value="Create"/>
+      <input type="submit" value="Submit"/>
     </form>
   </body>
 </html>
