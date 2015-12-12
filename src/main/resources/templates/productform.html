@@ -2,32 +2,82 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head lang="en">
     <title>ONLINE STORE</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <p><a href="#" th:href="@{/}">Home</a></p>
-    <p><a href="#" th:href="@{/products}">Products</a></p>
-    <h3>Product Form</h3>
-    <form th:object="${product}" th:action="@{/product}" method="post">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">ONLINE STORE</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <li><a href="#" th:href="@{/}">Home</a></li>
+            <li><a href="#" th:href="@{/products}">Products</a></li>
+            <li class="active"><a href="#" th:href="@{product/new}">Create Product</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--
+      <p><a href="#" th:href="@{/}">Home</a></p>
+      <p><a href="#" th:href="@{/products}">Products</a></p>
+      <h3>Product Form</h3>
+      <form th:object="${product}" th:action="@{/product}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        Name:<br></br>
+        <input type="text" th:field="*{name}"/>
+        <br></br>
+        Category:<br></br>
+        <input type="text" th:field="*{category}"/>
+        <br></br>
+        Image Path:<br></br>
+        <input type="text" th:field="*{imagePath}"/>
+        <br></br>
+        Price:<br></br>
+        <input type="text" th:field="*{price}"/>
+        <br></br>
+        Quantity:<br></br>
+        <input type="text" th:field="*{quantity}"/>
+        <br></br>
+        Info:<br></br>
+        <input type="text" th:field="*{info}"/>
+        <br></br><br></br>
+        <input type="submit" value="Submit"/>
+      </form>
+        -->
+    <form role="form" th:object="${product}" th:action="@{/product}" method="post">
       <input type="hidden" th:field="*{id}"/>
-      Name:<br></br>
-      <input type="text" th:field="*{name}"/>
-      <br></br>
-      Category:<br></br>
-      <input type="text" th:field="*{category}"/>
-      <br></br>
-      Image Path:<br></br>
-      <input type="text" th:field="*{imagePath}"/>
-      <br></br>
-      Price:<br></br>
-      <input type="text" th:field="*{price}"/>
-      <br></br>
-      Quantity:<br></br>
-      <input type="text" th:field="*{quantity}"/>
-      <br></br>
-      Info:<br></br>
-      <input type="text" th:field="*{info}"/>
-      <br></br><br></br>
-      <input type="submit" value="Submit"/>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" th:field="*{name}"></input>
+      </div>
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" class="form-control" th:field="*{category}"></input>
+      </div>
+      <div class="form-group">
+        <label for="imagePath">Image Path:</label>
+        <input type="text" class="form-control" th:field="*{imagePath}"></input>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="text" class="form-control" th:field="*{price}"></input>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="text" class="form-control" th:field="*{quantity}"></input>
+      </div>
+      <div class="form-group">
+        <label for="info">Info:</label>
+        <input type="text" class="form-control" th:field="*{info}"></input>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
     </form>
   </body>
 </html>

@@ -2,26 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head lang="en">
     <title>ONLINE STORE</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <p><a href="#" th:href="@{/}">Home</a></p>
-    <p><a href="#" th:href="@{'product/new'}">Create Product</a></p>
-    <div th:unless="${#lists.isEmpty(products)}">
-      <h3>Product List</h3>
-      <table>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Price</th>
-        </tr>
-        <tr th:each="product : ${products}">
-          <td th:text="${product.id}">Id</td>
-          <td th:text="${product.name}">Name</td>
-          <td th:text="${product.price}">Price</td>
-          <td><a th:href="@{'/product/' + ${product.id}}">View</a></td>
-          <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
-          <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
-        </tr>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">ONLINE STORE</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <li><a href="#" th:href="@{/}">Home</a></li>
+            <li class="active"><a href="#" th:href="@{/products}">Products</a></li>
+            <li><a href="#" th:href="@{product/new}">Create Product</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--
+      <p><a href="#" th:href="@{/}">Home</a></p>
+      <p><a href="#" th:href="@{'product/new'}">Create Product</a></p>
+      <div th:unless="${#lists.isEmpty(products)}">
+        <h3>Product List</h3>
+        <table>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.id}">Id</td>
+            <td th:text="${product.name}">Name</td>
+            <td th:text="${product.price}">Price</td>
+            <td><a th:href="@{'/product/' + ${product.id}}">View</a></td>
+            <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
+            <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
+          </tr>
+        </table>
+      </div>
+      -->
+    <div class="container">
+      <h2>Products List</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.id}">Id</td>
+            <td th:text="${product.name}">Name</td>
+            <td th:text="${product.price}">Price</td>
+            <td><a th:href="@{'/product/' + ${product.id}}">View</a></td>
+            <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
+            <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </body>
