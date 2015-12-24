@@ -8,6 +8,34 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        background-color: #e1e1e1;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      li {
+        float: left;
+      }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
+      .active {
+        background-color: #4CAF50;
+      }
+    </style>
   </head>
   <body>
     <!--
@@ -22,10 +50,14 @@
           <a class="navbar-brand" href="#">ONLINE STORE</a>
         </div>
         <div>
-          <ul class="nav navbar-nav">
+          <ul>
             <li class="active"><a href="#" th:href="@{/}">Home</a></li>
             <li><a href="#" th:href="@{/products}">Products</a></li>
             <li><a href="#" th:href="@{product/new}">Create Product</a></li>
+            <ul style="float: right;">
+              <li><a href="#about">About</a></li>
+              <li><a href="#login">Login</a></li>
+            </ul>
           </ul>
         </div>
       </div>
