@@ -187,7 +187,11 @@
         <label>Name:</label>
         <input type="text" th:field="*{name}" placeholder="Enter name"></input>
         <label>Category:</label>
-        <input type="text" th:field="*{category}" placeholder="Enter category"></input>
+        <select th:field="*{category}">
+          <option value="Phone">Phone</option>
+          <option value="Tablet">Tablet</option>
+          <option value="Other">Other</option>
+        </select>
         <label>Image Path:</label>
         <input type="text" th:field="*{imagePath}" placeholder="Enter image path"></input>
         <label>Quantity:</label>
