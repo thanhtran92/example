@@ -61,8 +61,8 @@
           </div>
           <input type="hidden" id="deletedProductId"/>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-danger" id="btnYes">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" id="btnYes">Delete</button>
           </div>
         </div>
         <!-- /.modal-content -->
@@ -78,12 +78,13 @@
       }
 
       $('#btnYes').click(function() {
-        alert($('#deletedProductId').val());
-        //$('products').remove($('#deletedProductId'));
-        $.post( "${'/product/delete/' + $('#deletedProductId').val()}", function( data ) {
-          alert( "Data Loaded: " );
+        // alert($('#deletedProductId').val());
+        $.post("product/delete/" + $('#deletedProductId').val(), function() {
+          console.log('Deleted!');
+          window.location.reload();
         });
-        $('#popup').modal('hide');
+
+        $('#myModal').modal('hide');
       });
     </script>
   </body>
