@@ -1,76 +1,112 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head lang="en">
-    <title>ONLINE STORE</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">ONLINE STORE</a>
-        </div>
-        <div>
-          <ul class="nav navbar-nav">
-            <li><a href="#" th:href="@{/}">Home</a></li>
-            <li><a href="#" th:href="@{/products}">Products</a></li>
-            <li class="active"><a href="#" th:href="@{product/new}">Create Product</a></li>
-          </ul>
-        </div>
+
+<head lang="en">
+  <title>ONLINE STORE</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- jQuery validation -->
+  <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">ONLINE STORE</a>
       </div>
-    </nav>
-    <form class="form-horizontal" role="form" th:object="${product}" th:action="@{/product}" method="post">
-      <input type="hidden" th:field="*{id}"/>
-      <div class="form-group">
-        <label class="control-label col-sm-2">Name:</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" th:field="*{name}" placeholder="Enter name"></input>
-        </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li><a href="#" th:href="@{/}">Home</a></li>
+          <li><a href="#" th:href="@{/products}">Products</a></li>
+          <li class="active"><a href="#" th:href="@{product/new}">Create Product</a></li>
+        </ul>
       </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2">Category:</label>
-        <div class="col-sm-5">
-          <select class="form-control" th:field="*{category}">
+    </div>
+  </nav>
+  <form id="productForm" class="form-horizontal" role="form" th:object="${product}" th:action="@{/product}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div class="form-group">
+      <label class="control-label col-sm-2">Name:</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" th:field="*{name}" placeholder="Enter name"></input>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Category:</label>
+      <div class="col-sm-5">
+        <select class="form-control" th:field="*{category}">
             <option value="Phone">Phone</option>
             <option value="Tablet">Tablet</option>
             <option value="Other">Other</option>
           </select>
-        </div>
       </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2">Image Path:</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" th:field="*{imagePath}" placeholder="Enter image path"></input>
-        </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Image Path:</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" th:field="*{imagePath}" placeholder="Enter image path"></input>
       </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2">Quantity:</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" th:field="*{quantity}" placeholder="Enter quantity"></input>
-        </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Quantity:</label>
+      <div class="col-sm-5">
+        <input id="quantity" type="text" class="form-control" th:field="*{quantity}" placeholder="Enter quantity"></input>
       </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2">Price:</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" th:field="*{price}" placeholder="Enter price"></input>
-        </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Price:</label>
+      <div class="col-sm-5">
+        <input id="price" type="text" class="form-control" th:field="*{price}" placeholder="Enter price"></input>
       </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2">Info:</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" th:field="*{info}" placeholder="Enter info"></input>
-        </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Info:</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" th:field="*{info}" placeholder="Enter info"></input>
       </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-5">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-5">
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
-    </form>
-  </body>
+    </div>
+  </form>
+  <script>
+    jQuery.validator.setDefaults({
+      debug: true,
+      success: "valid"
+    });
+    $("#productForm").validate({
+      rules: {
+        quantity: {
+          digits: true
+        },
+        price: {
+          number: true
+        }
+      },
+      submitHandler: function(form) {
+        $.ajax({
+          type: "POST",
+          url: $(form).attr("action"),
+          data: $(form).serialize(),
+          success: success,
+          dataType: ""
+        });
+
+        function success() {
+          window.location.href = "/products";
+        }
+      }
+    });
+  </script>
+</body>
+
 </html>
