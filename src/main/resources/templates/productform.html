@@ -10,9 +10,9 @@
   <!-- Latest compiled JavaScript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <!-- jQuery validation -->
-  <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+  <!-- form validation -->
+  <script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
+  <script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -57,13 +57,13 @@
     <div class="form-group">
       <label class="control-label col-sm-2">Quantity:</label>
       <div class="col-sm-5">
-        <input id="quantity" type="text" class="form-control" th:field="*{quantity}" placeholder="Enter quantity"></input>
+        <input id="quantity" type="text" class="form-control" th:field="*{quantity}" placeholder="Enter quantity" data-fv-digits="true"></input>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2">Price:</label>
       <div class="col-sm-5">
-        <input id="price" type="text" class="form-control" th:field="*{price}" placeholder="Enter price"></input>
+        <input id="price" type="text" class="form-control" th:field="*{price}" placeholder="Enter price" data-fv-numeric="true"></input>
       </div>
     </div>
     <div class="form-group">
@@ -79,31 +79,58 @@
     </div>
   </form>
   <script>
-    jQuery.validator.setDefaults({
-      debug: true,
-      success: "valid"
-    });
-    $("#productForm").validate({
-      rules: {
+    $('#productForm').formValidation({
+      framework: 'bootstrap',
+      icon: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields: {
+        name: {
+          validators: {
+            notEmpty: {
+              message: 'The name is required'
+            }
+          }
+        },
         quantity: {
-          digits: true
+          validators: {
+            notEmpty: {
+              message: 'The quantity is required'
+            }
+          }
         },
         price: {
-          number: true
+          validators: {
+            notEmpty: {
+              message: 'The price is required'
+            }
+          }
         }
-      },
-      submitHandler: function(form) {
-        $.ajax({
-          type: "POST",
-          url: $(form).attr("action"),
-          data: $(form).serialize(),
-          success: success,
-          dataType: ""
-        });
+      }
+    }).on('success.field.fv', function(e, data) {
+      if (data.fv.getInvalidFields().length > 0) {
+        data.fv.disableSubmitButtons(true);
+      }
+      e.preventDefault();
+    }).on('success.form.fv', function(e) {
+      // Prevent form submission
+      e.preventDefault();
 
-        function success() {
-          window.location.href = "/products";
-        }
+      // Custom submit handler
+      var form = $(e.target);
+      $.ajax({
+        type: "POST",
+        url: form.attr("action"),
+        data: form.serialize(),
+        success: success,
+        dataType: ""
+      });
+
+      // Redirect to /products page after successfully creating product
+      function success() {
+        window.location.href = "/products";
       }
     });
   </script>
